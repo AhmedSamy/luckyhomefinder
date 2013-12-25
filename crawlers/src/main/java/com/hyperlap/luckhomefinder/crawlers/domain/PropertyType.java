@@ -26,7 +26,7 @@ public enum PropertyType {
 	 * 
 	 * @return String representation of the property type.
 	 */
-	public final String type() {
+	public final String value() {
 		return this.type;
 	}
 

@@ -11,6 +11,10 @@ import java.util.Date;
 /***/
 public final class Property {
 
+	/** property Id on database */
+	// uuid
+	/** property Id on the website */
+	private String SiteId;
 	/** holds the street address and building number */
 	private String streetAddress;
 	/** holds the district name */
@@ -31,6 +35,88 @@ public final class Property {
 	private boolean Agent;
 	/** Represent wither this property is advertised by an agency or not */
 	private boolean owner;
+	/** Contain the property link. */
+	private String link;
+	/** Boolean to indicate wither property for rent or not */
+	private boolean rentStatus;
+	/** Boolean to indicate wither property for sale or not */
+	private boolean saleStatus;
+
+	/**
+	 * Return rent status of the property
+	 * 
+	 * @return wither property for rent or not
+	 */
+	public final boolean isForRent() {
+		return rentStatus;
+	}
+
+	/**
+	 * Sets the property rent status
+	 * 
+	 * @param rentStatus
+	 *            indicates the property rent status.
+	 */
+	public void setRentStatus(final boolean rentStatus) {
+		this.rentStatus = rentStatus;
+	}
+
+	/**
+	 * Return sale status of the property
+	 * 
+	 * @return wither property for sale or not.
+	 */
+	public final boolean isForSale() {
+		return saleStatus;
+	}
+
+	/**
+	 * Sets the sale status of the property
+	 * 
+	 * @param saleStatus
+	 *            Indicates the property sale status.
+	 */
+	public void setSellingStatus(final boolean saleStatus) {
+		this.saleStatus = saleStatus;
+	}
+
+	/**
+	 * Return the property id on the website.
+	 * 
+	 * @return property id on the website.
+	 * */
+	public final String getSiteId() {
+		return SiteId;
+	}
+
+	/**
+	 * Sets the property id on the website.
+	 * 
+	 * @param siteId
+	 *            property id on the website.
+	 * */
+	public void setSiteId(final String siteId) {
+		SiteId = siteId;
+	}
+
+	/**
+	 * Return the property link
+	 * 
+	 * @return property link
+	 * */
+	public String getLink() {
+		return link;
+	}
+
+	/**
+	 * Sets the property link.
+	 * 
+	 * @param propertyLink
+	 *            property link.
+	 * */
+	public void setLink(final String propertyLink) {
+		this.link = propertyLink;
+	}
 
 	/**
 	 * Return the street address
@@ -142,7 +228,7 @@ public final class Property {
 	 * @param sell
 	 *            cost of the selling price
 	 * */
-	public final void setSell(final long sell) {
+	public final void setSellintPrice(final long sell) {
 		this.sell = sell;
 	}
 
