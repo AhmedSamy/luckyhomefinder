@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+/**
+ * @author jason
+ *
+ */
+package com.hyperlab.luckyhomefinder.repository.spring;

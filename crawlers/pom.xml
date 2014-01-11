@@ -6,13 +6,23 @@
 		<artifactId>luckyhomefinder</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>crawlers</artifactId>
+	<artifactId>service</artifactId>
 
 	<dependencies>
-	<dependency>
-		<groupId>org.jsoup</groupId>
+		<dependency>
+			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>${jsoup.version}</version>
-			</dependency>
+		</dependency>
+		<dependency>
+			<groupId>com.hyperlap.luckyhomefinder</groupId>
+			<artifactId>repository</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hyperlap.luckyhomefinder</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
