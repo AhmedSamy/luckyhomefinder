@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.jsoup.Connection;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
@@ -15,7 +16,7 @@ import org.jsoup.select.Elements;
 import com.hyperlab.luckyhomefinder.common.domain.ConnectionConfigs;
 import com.hyperlab.luckyhomefinder.service.Exceptions.LinksFetcherException;
 import com.hyperlab.luckyhomefinder.service.parsers.LinksFetcher;
-import com.hyperlab.luckyhomefinder.sites.hse28.common.H28seConstants;
+import com.hyperlab.luckyhomefinder.sites.hse28.domain.H28seConstants;
 
 /**
  * Implementations of links fetcher service to handle fetching links from H28Se

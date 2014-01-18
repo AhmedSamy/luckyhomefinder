@@ -1,4 +1,4 @@
-package com.hyperlab.luckyhomefinder.sites.hse28.common;
+package com.hyperlab.luckyhomefinder.sites.hse28.domain;
 
 /**
  * H28Constants contains all constant strings needed for various operations,

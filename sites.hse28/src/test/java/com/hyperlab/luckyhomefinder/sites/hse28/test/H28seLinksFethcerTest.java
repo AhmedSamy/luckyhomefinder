@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.hyperlab.luckyhomefinder.service.Exceptions.LinksFetcherException;
-import com.hyperlab.luckyhomefinder.sites.hse28.common.H28seConstants;
+import com.hyperlab.luckyhomefinder.sites.hse28.domain.H28seConstants;
 import com.hyperlab.luckyhomefinder.sites.hse28.services.H28seLinksFetcher;
 
 
