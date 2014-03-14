@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Service;
 
 import com.hyperlab.luckyhomefinder.common.domain.Property;
 
 /**
  * PropertyRepository provide Access to {@code Property}s data base records.
  * */
+@Service
 public interface PropertyRepository extends MongoRepository<Property, UUID> {
 
 	/**
@@ -27,5 +29,6 @@ public interface PropertyRepository extends MongoRepository<Property, UUID> {
 	 * @return List of all properties exist the the same district.
 	 * */
 	public List<Property> findByDistrict(String district);
+	
 	
 }

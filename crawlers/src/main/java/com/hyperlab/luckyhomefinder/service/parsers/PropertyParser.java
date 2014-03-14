@@ -6,7 +6,7 @@ import com.hyperlab.luckyhomefinder.service.Exceptions.PropertyFetcherException;
 /**
  * propertyParser provide functionality needed to parse property information
  * from the property page.
- * 
+@author Kareem El-Shahawe
  * */
 public interface PropertyParser {
 

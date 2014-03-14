@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * This class contain the bad elements need to be removed from property page
  * elements
+ * @author Kareem EL-Shahawe
  */
 public class BadElements {
 

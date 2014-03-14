@@ -21,7 +21,7 @@ public class H28sePropertyFetcherTest {
 
     @Before
     public void setup() {
-        fetcher = new H28sePropertyFetcher();
+        
     }
 
     @After

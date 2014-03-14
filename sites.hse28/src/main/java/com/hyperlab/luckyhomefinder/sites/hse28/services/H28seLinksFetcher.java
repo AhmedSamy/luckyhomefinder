@@ -22,34 +22,31 @@ import com.hyperlab.luckyhomefinder.sites.hse28.domain.H28seConstants;
 /**
  * Implementations of links fetcher service to handle fetching links from H28Se
  * site.Implementations will be as follows: 1-Fetch last added property ID from
- * site.2-build possible property links.
+ * site.
+ * 2-build possible property links.
  * 
  * @author Kareem ElShahawe
  * */
 public class H28seLinksFetcher implements LinksFetcher {
 	/**
-	 * Return list of possible property links, lastKnownPropertyId is used as a
-	 * reference to start from when building property links.
-	 * 
-	 * @param lastKnownPropertyId
-	 *            last known property Id saved in the database.
-	 * @return List of possible property links.
+	 * {@inheritDoc}
 	 * */
-	public List<String> fetchLinks(String lastKnownPropertyId)
+	public final List<String> fetchLinks(final String lastKnownPropertyId)
 			throws LinksFetcherException {
-		Connection connection = InitConnection();
+		Connection connection = initConnection();
 		Response response = null;
 		String lastPropertyIdOnSite = null;
 		try {
 			response = connection.execute();
-			//Getting last property Id on website
+			// Getting last property Id on website
 			lastPropertyIdOnSite = parseLinks(response);
 		} catch (final IOException e) {
 			throw new LinksFetcherException(e);
 		}
 
-		//Building properties Links
-		List<String> possiblePropertiesLinks = buildPropertyLinks(lastKnownPropertyId, lastPropertyIdOnSite);
+		// Building properties Links
+		List<String> possiblePropertiesLinks = buildPropertyLinks(
+				lastKnownPropertyId, lastPropertyIdOnSite);
 		return possiblePropertiesLinks;
 	}
 
@@ -58,7 +55,7 @@ public class H28seLinksFetcher implements LinksFetcher {
 	 * 
 	 * @return Connection object used to perform connection to the website.
 	 * */
-	protected final Connection InitConnection() {
+	protected final Connection initConnection() {
 		Connection connection = Jsoup
 				.connect(H28seConstants.MAINSEARCH.value());
 		connection.data(H28seConstants.ACTIONKEY.value(),
@@ -128,16 +125,21 @@ public class H28seLinksFetcher implements LinksFetcher {
 		}
 		return possiblePropertyLinks;
 	}
+
 	/**
-	 * Return property ID
-	 * @param property id
+	 * Return property ID.
+	 * 
+	 * @param property
+	 *            text representation of the property.
+	 * @return property ID.
+	 * 
 	 * */
-	protected long getPropertyId(String property){
+	protected final long getPropertyId(final String property) {
 		final String regx = "\\d+";
 		Pattern pattern = Pattern.compile(regx);
 		Matcher matcher = pattern.matcher(property);
-		long id=0;
-		if(matcher.find()){
+		long id = 0;
+		if (matcher.find()) {
 			id = Long.parseLong(matcher.group());
 		}
 		return id;
