@@ -65,7 +65,7 @@ public class propertyRepositoryTest {
                 PropertyType.APARTMENT, true, false,
                 "http://eng.28hse.com/utf8/property106671.html", true, true));
         properties.add(new Property(UUID.randomUUID(), "1002435", "SHATIN",
-                dateFormat.parse("1925.05.10 PM.12:33"), 1235, 50000000l, 200,
+                dateFormat.parse("2010.05.10 PM.12:33"), 1235, 50000000l, 200,
                 PropertyType.APARTMENT, true, false,
                 "http://eng.28hse.com/utf8/property106671.html", true, true));
         return properties;

@@ -26,7 +26,7 @@ public class H28seLinksFethcerTest {
 
 	@Test
 	public void testFetchLinks() throws LinksFetcherException {
-		String lastKnownId = "107050";
+		String lastKnownId = "111792";
 		List<String> links = h28LinksFethcer.fetchLinks(lastKnownId);
 		for (String link : links) {
 			System.out.println(link);

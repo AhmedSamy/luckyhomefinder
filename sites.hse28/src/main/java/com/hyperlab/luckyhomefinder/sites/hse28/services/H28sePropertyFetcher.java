@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -104,12 +105,10 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 	 * 
 	 * */
 	protected final void hibernate() throws PropertyFetcherException {
-		final int minimumPeriod = 5000;
-	Random random = new Random();
-		final int randomPeriod =random 
-				.nextInt(6000);
+		final int minimumPeriod = ThreadLocalRandom.current().nextInt(1000,
+				3000) + 3000;
+		final int randomPeriod = ThreadLocalRandom.current().nextInt(2000);
 		try {
-			System.out.println(minimumPeriod +","+ randomPeriod);
 			sleep(minimumPeriod + randomPeriod);
 		} catch (InterruptedException e) {
 			throw new PropertyFetcherException(e);
@@ -123,7 +122,6 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 			throws PropertyFetcherException {
 
 		Connection connection = initConnection(link);
-
 		try {
 			Response response = connection.execute();
 			Document document = response.parse();

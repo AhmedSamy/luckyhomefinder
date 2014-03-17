@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hyperlab.luckyhomefinder.common.domain.Property;
 
-@Repository
+
 public class CustomRepositoryImpl implements CustomRepository {
 
 	/** Mongotemplate providing access to mongodb. */
