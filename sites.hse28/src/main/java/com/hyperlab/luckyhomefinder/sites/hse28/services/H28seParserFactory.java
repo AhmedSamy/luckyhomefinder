@@ -8,7 +8,7 @@ import com.hyperlab.luckyhomefinder.service.parsers.PropertyParserFactory;
 
 /**
  * Implementation of {@link PropertyParserFactory} interface to create H28SE
- * property parsers.
+ * property parsers with scope of prototype.
  * 
  * @author Kareem El-Shahawe
  * */

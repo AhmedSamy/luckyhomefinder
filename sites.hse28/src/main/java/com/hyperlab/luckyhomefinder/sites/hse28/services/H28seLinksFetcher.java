@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
@@ -15,6 +16,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.hyperlab.luckyhomefinder.common.domain.ConnectionConfigs;
+import com.hyperlab.luckyhomefinder.common.domain.Property;
 import com.hyperlab.luckyhomefinder.service.Exceptions.LinksFetcherException;
 import com.hyperlab.luckyhomefinder.service.parsers.LinksFetcher;
 import com.hyperlab.luckyhomefinder.sites.hse28.domain.H28seConstants;
@@ -22,16 +24,18 @@ import com.hyperlab.luckyhomefinder.sites.hse28.domain.H28seConstants;
 /**
  * Implementations of links fetcher service to handle fetching links from H28Se
  * site.Implementations will be as follows: 1-Fetch last added property ID from
- * site.
- * 2-build possible property links.
+ * site. 2-build possible property links.
  * 
  * @author Kareem ElShahawe
  * */
 public class H28seLinksFetcher implements LinksFetcher {
+	/** Logger. */
+	private static final Logger LOG = Logger.getLogger(H28seLinksFetcher.class);
+
 	/**
 	 * {@inheritDoc}
 	 * */
-	public final List<String> fetchLinks(final String lastKnownPropertyId)
+	public final List<String> fetchLinks(final Property lastKnownProperty)
 			throws LinksFetcherException {
 		Connection connection = initConnection();
 		Response response = null;
@@ -40,10 +44,14 @@ public class H28seLinksFetcher implements LinksFetcher {
 			response = connection.execute();
 			// Getting last property Id on website
 			lastPropertyIdOnSite = parseLinks(response);
-		} catch (final IOException e) {
+		} catch (final LinksFetcherException | IOException e) {
+			LOG.error(e);
 			throw new LinksFetcherException(e);
 		}
-
+		String lastKnownPropertyId = "0";
+		if (lastKnownProperty != null) {
+			lastKnownPropertyId = lastKnownProperty.getSiteId();
+		}
 		// Building properties Links
 		List<String> possiblePropertiesLinks = buildPropertyLinks(
 				lastKnownPropertyId, lastPropertyIdOnSite);

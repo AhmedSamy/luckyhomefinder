@@ -12,6 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
@@ -31,7 +32,8 @@ import com.hyperlab.luckyhomefinder.sites.hse28.domain.BadElements;
  * target website.
  * */
 public class H28sePropertyFetcher extends Thread implements PropertyParser {
-
+	private static final Logger LOG = Logger
+			.getLogger(H28sePropertyFetcher.class);
 	/** Object that will hold property information. */
 	private Property property;
 	/** Th tag string. */
@@ -89,6 +91,7 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 			hibernate();
 			fetchProperty(this.propertyPageLink);
 		} catch (PropertyFetcherException e) {
+			LOG.error(e);
 			this.property = null;
 		} finally {
 			counter.countDown();

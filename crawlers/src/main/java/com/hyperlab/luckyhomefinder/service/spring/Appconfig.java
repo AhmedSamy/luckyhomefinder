@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.hyperlab.luckyhomefinder.repository.spring.RepositoryConfiguration;
+import com.hyperlab.luckyhomefinder.repository.spring.ReposConf;
 
 @Configuration
 @EnableMongoRepositories
-@Import({RepositoryConfiguration.class})
+@Import({ReposConf.class})
 public class Appconfig {
 
 }

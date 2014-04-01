@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -12,15 +13,15 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import com.hyperlab.luckyhomefinder.repository.CustomRepository;
-import com.hyperlab.luckyhomefinder.repository.CustomRepositoryImpl;
+import com.hyperlap.luckyhomefinder.repository.custom.CustomRepository;
+import com.hyperlap.luckyhomefinder.repository.custom.CustomRepositoryImpl;
 import com.mongodb.Mongo;
 
 @Configuration
 @PropertySource("classpath:mongodb.properties")
 @ComponentScan(basePackages = { "com.hyperlab.luckyhomefinder.repository" })
 @EnableMongoRepositories("com.hyperlab.luckyhomefinder.repository")
-public class RepositoryConfiguration extends AbstractMongoConfiguration {
+public class ReposConf extends AbstractMongoConfiguration {
 
 	@Value("${mongodb.username}")
 	private String username;
@@ -48,6 +49,7 @@ public class RepositoryConfiguration extends AbstractMongoConfiguration {
 
 
 	@Bean
+	@Scope("prototype")
 	public CustomRepository customeRepository() {
 		return new CustomRepositoryImpl();
 	}

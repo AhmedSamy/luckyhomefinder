@@ -12,7 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.hyperlab.luckyhomefinder.common.domain.Property;
 import com.hyperlab.luckyhomefinder.repository.PropertyRepository;
-import com.hyperlab.luckyhomefinder.repository.spring.RepositoryConfiguration;
+import com.hyperlab.luckyhomefinder.repository.spring.ReposConf;
 import com.hyperlab.luckyhomefinder.service.parsers.PropertyParser;
 import com.hyperlab.luckyhomefinder.sites.hse28.services.H28sePropertyFetcher;
 
@@ -29,7 +29,7 @@ public class PropertyParserIntegrationTest {
 	@Before
 	public void setup() {
 		ApplicationContext context = new AnnotationConfigApplicationContext(
-				RepositoryConfiguration.class);
+				ReposConf.class);
 		propertyRepository = context.getBean(PropertyRepository.class);
 	}
 

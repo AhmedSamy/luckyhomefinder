@@ -1,9 +1,10 @@
-package com.hyperlab.luckyhomefinder.sites.hse28.services;
+package com.hyperlap.luckyhomefinder.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hyperlab.luckyhomefinder.common.domain.Property;
@@ -15,21 +16,25 @@ import com.hyperlab.luckyhomefinder.service.parsers.PropertyParserFactory;
  * Manages property fetcher threads and save the return data to the DB.
  * 
  * */
-public class Manager {
+public class ParsersManager {
 
+	/**
+	 * Logger.
+	 * */
+	private static final Logger LOG = Logger.getLogger(ParsersManager.class);
 	/** number of property fetchers to be dispatched. */
 	private static final int INCREMENT = 4;
 
 	/** Provide access to properties records in the data base. */
 	@Autowired
-	private PropertyRepository propertyRepo;
+	private PropertyRepository propertyRepository;
 
 	/** Property parser factory used in dispatching property parser threads. */
 	private PropertyParserFactory parserFactory;
 
-	/** Private empty constructor to prevent empty intialization of manager. */
+	/** Private empty constructor to prevent empty initialization of manager. */
 	@SuppressWarnings("unused")
-	private Manager() {
+	private ParsersManager() {
 	}
 
 	/**
@@ -38,7 +43,7 @@ public class Manager {
 	 * @param parserFacotry
 	 *            parser factory that will be used to dispatch property parsers.
 	 * */
-	public Manager(final PropertyParserFactory parserFacotry) {
+	public ParsersManager(final PropertyParserFactory parserFacotry) {
 		this.parserFactory = parserFacotry;
 	}
 
@@ -52,10 +57,7 @@ public class Manager {
 	public final void processLinks(final List<String> links) {
 		List<String> subLinks = null;
 		List<Property> properties = null;
-		System.out.println("processing: " + links.size());
 		for (int i = 0; i < links.size(); i += INCREMENT) {
-			System.out
-					.println("Current process : " + i + " =>" + (i + INCREMENT));
 			subLinks = links.subList(i, i + INCREMENT);
 			try {
 				properties = dispatchPropertyFetchers(subLinks);
@@ -90,6 +92,7 @@ public class Manager {
 		try {
 			countDownLatch.await();
 		} catch (InterruptedException e) {
+			LOG.error(e);
 			throw new ManagerException(e);
 		}
 		return properties;
@@ -105,7 +108,7 @@ public class Manager {
 		if (properties != null && !properties.isEmpty()) {
 			for (Property property : properties) {
 				if (property != null && property.getId() != null) {
-					propertyRepo.save(property);
+					propertyRepository.save(property);
 				}
 			}
 		}
