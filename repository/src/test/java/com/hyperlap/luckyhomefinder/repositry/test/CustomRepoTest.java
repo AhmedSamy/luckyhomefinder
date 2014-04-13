@@ -35,7 +35,7 @@ public class CustomRepoTest {
 
 	@Test
 	public void testCustomeFind() {
-		Property result = customeRepos.findLastProperty("gohome");
+		Property result = customeRepos.findLastProperty("28hse");
 		assertNotNull(result);
 		assertNotNull(customeRepos);
 

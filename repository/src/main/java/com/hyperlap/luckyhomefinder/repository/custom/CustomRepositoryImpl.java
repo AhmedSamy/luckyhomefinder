@@ -29,7 +29,7 @@ public class CustomRepositoryImpl implements CustomRepository {
 		final String regx = site;
 		Pattern pattern = Pattern.compile(regx);
 		Query query = new Query(Criteria.where("link").regex(pattern));
-		query.with(new Sort(Sort.Direction.DESC, "postDate"));
+		query.with(new Sort(Sort.Direction.DESC, "siteId"));
 		Property result = mongoOperations.findOne(query,
 				com.hyperlab.luckyhomefinder.common.domain.Property.class);
 		return result;

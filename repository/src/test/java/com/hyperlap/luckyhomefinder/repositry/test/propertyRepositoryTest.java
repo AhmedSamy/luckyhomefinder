@@ -39,7 +39,7 @@ public class propertyRepositoryTest {
 
 	@Test
 	public void testRepositoryOperations() throws Exception {
-		propertyRepository.deleteAll();
+//		propertyRepository.deleteAll();
 		List<Property> properties = initProperties();
 		List<Property> savedProperties = propertyRepository.save(properties);
 		assertNotNull(properties);
@@ -50,7 +50,7 @@ public class propertyRepositoryTest {
 		List<Property> properties = new ArrayList<Property>();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd aa.hh:mm");
 
-		properties.add(new Property(UUID.randomUUID(), "1002435", "SHATIN",
+		properties.add(new Property(UUID.randomUUID(), "9999999999", "HomeLAND",
 				dateFormat.parse("1925.05.10 PM.12:33"), 1235, 50000000l, 200,
 				PropertyType.APARTMENT, true, false,
 				"http://eng.28hse.com/utf8/property106671.html", true, true));

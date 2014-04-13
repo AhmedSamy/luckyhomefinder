@@ -8,8 +8,9 @@ public enum PropertyType {
 
 	APARTMENT("apartment", 1), INDUSTRIAL("industrial", 2), COMMERCIAL(
 			"commercial", 3), SHOPS("shop", 4), BUSINESS("business", 5), PARK(
-			"park", 6), SHARE("share", 7), STUDIO("studio", 8), VILLAGE(
-			"village", 9), SHORT("short", 10), FARM("farm", 11);
+			"park", 6), SHARE("share", 7), STUDIO("studio", 8), VILLAGEHOUSE(
+			"village house", 9), SHORT("short", 10), FARM("farm", 11), HOUSE(
+			"house",12);
 	/** Hold the string representation of the property type */
 	private String type;
 	/** Hold the integer representation of the property type */

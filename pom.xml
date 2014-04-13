@@ -18,6 +18,8 @@
 		<module>com.hyperlab.luckyhomefinder.sites.hse28</module>
 		<module>sites.hse28</module>
 		<module>SitesManagement</module>
+		<module>gohomes</module>
+		<module>sites.gohome</module>
 	</modules>
 	<dependencies>
 		<dependency>

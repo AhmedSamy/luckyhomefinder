@@ -2,6 +2,7 @@ package com.hyperlap.luckyhomefinder.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.log4j.Logger;
@@ -105,12 +106,15 @@ public class ParsersManager {
 	 *            list of properties to be persisted to the DB.
 	 * */
 	protected final void persistProperties(final List<Property> properties) {
+		List<Property> validData = new ArrayList<Property>();
 		if (properties != null && !properties.isEmpty()) {
 			for (Property property : properties) {
 				if (property != null && property.getId() != null) {
-					propertyRepository.save(property);
+					validData.add(property);
 				}
 			}
+			
+			propertyRepository.save(validData);
 		}
 	}
 
