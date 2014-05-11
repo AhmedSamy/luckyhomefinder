@@ -7,7 +7,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 	<context:annotation-config />
-	<bean class="com.hyperlap.luckyhomefinder.sitesmanager.spring.Config"/>
+	<task:annotation-driven />
+	<bean class="com.hyperlab.luckyhomefinder.sitesmanager.spring.Config" />
 	<import resource="28hse.xml" />
+<!-- 	<import resource="gohome.xml" /> -->
 
 </beans>

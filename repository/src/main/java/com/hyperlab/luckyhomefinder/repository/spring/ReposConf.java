@@ -13,8 +13,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import com.hyperlap.luckyhomefinder.repository.custom.CustomRepository;
-import com.hyperlap.luckyhomefinder.repository.custom.CustomRepositoryImpl;
+import com.hyperlab.luckyhomefinder.repository.custom.CustomRepository;
+import com.hyperlab.luckyhomefinder.repository.custom.CustomRepositoryImpl;
 import com.mongodb.Mongo;
 
 @Configuration

@@ -15,8 +15,8 @@ import com.hyperlab.luckyhomefinder.repository.PropertyRepository;
 import com.hyperlab.luckyhomefinder.service.Exceptions.LinksFetcherException;
 import com.hyperlab.luckyhomefinder.service.Exceptions.ManagerException;
 import com.hyperlab.luckyhomefinder.service.parsers.PropertyParserFactory;
-import com.hyperlap.luckyhomefinder.service.ParsersManager;
-import com.hyperlap.luckyhomefinder.sites.hse28.spring.H28seConfiguration;
+import com.hyperlab.luckyhomefinder.service.ParsersManager;
+import com.hyperlab.luckyhomefinder.sites.hse28.spring.H28seConfiguration;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
@@ -40,8 +40,8 @@ public class ManagerTest {
 		links.add("http://www.28hse.com/en/utf8/property96947.html");
 		links.add("http://www.28hse.com/en/utf8/property96949.html");
 		links.add("http://www.28hse.com/en/utf8/property96951.html");
-//		final List<Property> properties = manager
-//				.dispatchPropertyFetchers(links);
+		final List<Property> properties = manager
+				.dispatchPropertyFetchers(links);
 		assertNotNull(properties);
 		assertEquals(4, properties.size());
 	}

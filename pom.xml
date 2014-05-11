@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.hyperlap.luckyhomefinder</groupId>
+	<groupId>com.hyperlab.luckyhomefinder</groupId>
 	<artifactId>luckyhomefinder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -10,16 +10,12 @@
 		<spring-data-version>1.3.2.RELEASE</spring-data-version>
 	</properties>
 	<modules>
-		<module>crawlers</module>
 		<module>repository</module>
 		<module>common</module>
-		<module>sites</module>
-		<module>hse28</module>
-		<module>com.hyperlab.luckyhomefinder.sites.hse28</module>
 		<module>sites.hse28</module>
 		<module>SitesManagement</module>
-		<module>gohomes</module>
 		<module>sites.gohome</module>
+		<module>crawlers</module>
 	</modules>
 	<dependencies>
 		<dependency>

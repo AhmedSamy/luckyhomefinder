@@ -2,19 +2,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.hyperlap.luckyhomefinder</groupId>
+		<groupId>com.hyperlab.luckyhomefinder</groupId>
 		<artifactId>luckyhomefinder</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>SitesManagement</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>com.hyperlap.luckyhomefinder</groupId>
+			<groupId>com.hyperlab.luckyhomefinder</groupId>
 			<artifactId>sites.hse28</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.hyperlap.luckyhomefinder</groupId>
+			<groupId>com.hyperlab.luckyhomefinder</groupId>
 			<artifactId>service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -25,8 +25,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.hyperlap.luckyhomefinder</groupId>
+			<groupId>com.hyperlab.luckyhomefinder</groupId>
 			<artifactId>repository</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hyperlab.luckyhomefinder</groupId>
+			<artifactId>sites.gohome</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
