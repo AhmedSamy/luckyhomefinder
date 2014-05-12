@@ -17,7 +17,6 @@ public class H28seParserFactory implements PropertyParserFactory {
 	/**
 	 * {@inheritDoc}
 	 * */
-	@Override
 	public final PropertyParser dispatchParser(final Property property,
 			final CountDownLatch countDownLatch, final String link) {
 		return new H28sePropertyFetcher(property, countDownLatch, link);
