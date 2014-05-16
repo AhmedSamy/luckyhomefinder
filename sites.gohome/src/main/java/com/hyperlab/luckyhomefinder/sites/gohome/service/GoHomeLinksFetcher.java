@@ -2,6 +2,7 @@ package com.hyperlab.luckyhomefinder.sites.gohome.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,6 +23,13 @@ import com.hyperlab.luckyhomefinder.sites.gohome.domain.ParsersConstants;
 /**
  * Provide implementation of {@link LinksFetcher} for GoHome website.
  * 
+ * There is a major issue with the Gohome way of sorting it's links, first it
+ * doesn't add the date by the which the ads were added to the site. second
+ * properties Ids are not unique , they are only unique per territory but not
+ * globally, which means that you can have two properties with the same
+ * ID,however. since they are both in different territories no conflict will
+ * Occur.
+ * 
  * @author jason
  * */
 public class GoHomeLinksFetcher implements LinksFetcher {
@@ -40,13 +48,14 @@ public class GoHomeLinksFetcher implements LinksFetcher {
 		final String lastPropertyLink = lastKnownProperty.getLink();
 		// valid Links will holds the valid property links after parsing
 		// property links fetched from response page.
-		List<String> validLinks = new ArrayList<>();
+		List<String> validLinks = new ArrayList<String>();
 		// Property links is links found in search page.
 		List<String> propertyLinks = new ArrayList<>();
 		// Boolean indicating that we have reached last known property.
 		boolean found = false;
 		// Connection response.
 		Response response = null;
+		List<String> links = new ArrayList<String>();
 		for (int page = 1; !found; page++) {
 			response = connect(page);
 			// Fetching property links in response page.
@@ -56,28 +65,53 @@ public class GoHomeLinksFetcher implements LinksFetcher {
 			// 2- change found to true.
 			if (propertyLinks.contains(lastPropertyLink)) {
 				// Extracting links.
-				List<String> extractedLinks = extractLinks(lastPropertyLink,
-						propertyLinks);
-				validLinks.addAll(extractedLinks);
+				links = extractLinks(lastPropertyLink, propertyLinks);
 				found = true;
-				continue;
 			} else {
-				validLinks.addAll(propertyLinks);
+				links = propertyLinks;
 			}
-			try {
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				LOGGER.error(
-						"Sleeping thread has been interrupted while parsing pages ",
-						e);
-				throw new LinksFetcherException(
-						"Sleeping thread has been interrupted while parsing pages ",
-						e);
+			addToLinks(validLinks, links);
+			// If there are still more links to parse then sleep before
+			// connecting to next page.
+			if (!found) {
+				try {
 
+					Thread.sleep(sleepTime);
+				} catch (InterruptedException e) {
+					LOGGER.error(
+							"Sleeping thread has been interrupted while parsing pages ",
+							e);
+					throw new LinksFetcherException(
+							"Sleeping thread has been interrupted while parsing pages ",
+							e);
+
+				}
 			}
 		}
-
+		/*
+		 * After getting the links, we need to reverse it and this is needed so
+		 * that we can parse properties from last added to newly added. this is
+		 * a special case to resolve issue with how goHome website save the
+		 * data.
+		 */
+		Collections.reverse(validLinks);
 		return validLinks;
+	}
+
+	/**
+	 * Add the new links to the property links that will be fetched, this method
+	 * was implemented to make solve following. -Eliminate duplicate links, and
+	 * maintain the links order.
+	 * 
+	 * @param validLinks
+	 *            valid links that will be parsed later by property parser.
+	 * @param newLinks
+	 *            new links that was fetched from the current page.
+	 * */
+	protected final void addToLinks(final List<String> validLinks,
+			final List<String> newLinks) {
+		newLinks.removeAll(validLinks);
+		validLinks.addAll(newLinks);
 	}
 
 	/**

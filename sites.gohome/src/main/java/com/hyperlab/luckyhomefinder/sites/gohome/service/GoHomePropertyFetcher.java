@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
@@ -185,7 +186,7 @@ public class GoHomePropertyFetcher extends Thread implements PropertyParser {
 		this.finalProperty.setPropertyType(getPropertyType(document));
 		// listed by
 		listedBy(this.finalProperty);
-		//Link
+		// Link
 		this.finalProperty.setLink(this.link);
 	}
 
@@ -347,6 +348,7 @@ public class GoHomePropertyFetcher extends Thread implements PropertyParser {
 	 * @return {@link Date} object containing date of the ad post.
 	 * */
 	protected final Date getPostDate(final Document document) {
+		final Calendar currentDate = Calendar.getInstance();
 		final String dateFormatStr = "dd MMM yyyy";
 		Elements possibleElements = document
 				.getElementsByClass(ParsersConstants.TXTDiV.value()).first()
@@ -356,14 +358,31 @@ public class GoHomePropertyFetcher extends Thread implements PropertyParser {
 		Date postDate = null;
 		for (Element element : possibleElements) {
 			try {
-				postDate = dateFormat.parse(element.text());
+				//Get property post date and add the hour sec and min.
+				postDate = initHourMinitSec(dateFormat.parse(element.text()));
 				break;
 			} catch (ParseException e) {
+				LOGGER.error("Error while parsing property date " + this.link,
+						e);
 				continue;
-				// Do nothing.
 			}
 		}
 		return postDate;
+	}
+
+	/**
+	 * InitPostDate initialize post date with the help of Calendar utility class
+	 * to set the hours minutes and seconds.
+	 * @param postDAte post date extracted from property page, contains only YY.MM.DD
+	 * */
+	protected final Date initHourMinitSec(final Date postDate) {
+		final Calendar currentDate = Calendar.getInstance();
+		final Calendar now =Calendar.getInstance();
+		currentDate.setTime(postDate);
+		currentDate.set(Calendar.HOUR, now.get(Calendar.HOUR_OF_DAY));
+		currentDate.set(Calendar.MINUTE,now.get(Calendar.MINUTE));
+		currentDate.set(Calendar.SECOND, now.get(Calendar.SECOND));
+		return currentDate.getTime();
 	}
 
 	/**

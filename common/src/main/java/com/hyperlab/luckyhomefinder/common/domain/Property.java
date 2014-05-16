@@ -2,7 +2,10 @@ package com.hyperlab.luckyhomefinder.common.domain;
 
 import java.util.Date;
 import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+
 
 /**
  * Property holds all property information that will be used later to be
@@ -35,6 +38,7 @@ public final class Property {
 	/** Represent wither this property is advertised by an agency or not */
 	private boolean owner;
 	/** Contain the property link. */
+	@Indexed(unique=true)
 	private String link;
 	/** Boolean to indicate wither property for rent or not */
 	private boolean rentStatus;

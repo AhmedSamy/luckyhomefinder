@@ -6,20 +6,19 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
-	<bean id="linkFetcher"
-		class="com.hyperlab.luckyhomefinder.sites.hse28.services.H28seLinksFetcher"
-		scope="singleton" />
+	<bean id="hse28-linkFetcher"
+		class="com.hyperlab.luckyhomefinder.sites.hse28.services.H28seLinksFetcher"/>
 
-	<bean id="parserFactory"
+	<bean id="hse28-parserFactory"
 		class="com.hyperlab.luckyhomefinder.sites.hse28.services.H28seParserFactory" />
 
-	<bean id="parsersManager" class="com.hyperlab.luckyhomefinder.service.ParsersManager">
-		<constructor-arg name="parserFacotry" ref="parserFactory" />
+	<bean id="hse28-parsersManager" class="com.hyperlab.luckyhomefinder.service.ParsersManager">
+		<constructor-arg name="parserFacotry" ref="hse28-parserFactory" />
 	</bean>
 
-	<bean id="director" class="com.hyperlab.luckyhomefinder.service.SiteDirector">
-		<constructor-arg name="pManager" ref="parsersManager" />
-		<constructor-arg name="pLinksFetcher" ref="linkFetcher" />
+	<bean id="hse28-director" class="com.hyperlab.luckyhomefinder.service.SiteDirector">
+		<constructor-arg name="pManager" ref="hse28-parsersManager" />
+		<constructor-arg name="pLinksFetcher" ref="hse28-linkFetcher" />
 		<constructor-arg name="pWebsite" value="28hse" />
 	</bean>
 </beans>

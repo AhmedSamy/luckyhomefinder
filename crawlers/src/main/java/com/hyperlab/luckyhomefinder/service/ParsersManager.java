@@ -22,8 +22,6 @@ public class ParsersManager {
 	 * Logger.
 	 * */
 	private static final Logger LOG = Logger.getLogger(ParsersManager.class);
-	/** number of property fetchers to be dispatched. */
-	private static final int INCREMENT = 4;
 
 	/** Provide access to properties records in the data base. */
 	@Autowired
@@ -57,8 +55,16 @@ public class ParsersManager {
 	public final void processLinks(final List<String> links) {
 		List<String> subLinks = null;
 		List<Property> properties = null;
-		for (int i = 0; i < links.size(); i += INCREMENT) {
-			subLinks = links.subList(i, i + INCREMENT);
+		int increment = 4;
+
+		for (int i = 0; i < links.size(); i += increment) {
+			// This is to cover the case if list of links is less than 4 links
+			// or remaining links is less than 4.
+
+			if (i + increment > links.size()) {
+				increment = links.size() - i;
+			}
+			subLinks = links.subList(i, i + increment);
 			try {
 				properties = dispatchPropertyFetchers(subLinks);
 				persistProperties(properties);

@@ -141,10 +141,11 @@ public class TestGoHomeProeprtyFetcher {
 	public void testGetPostDate() throws Exception {
 		GoHomePropertyFetcher propertyFetcher = new GoHomePropertyFetcher();
 		final Response response = propertyFetcher
-				.connect("http://property.gohome.com.hk/Tung-Chung/Coastal-Skyline/ad-1186769/en/");
+				.connect("http://property.gohome.com.hk/Tai-Po/Lo-Tsz-Tin-Village/ad-1207530/en/");
 		Date postDate = propertyFetcher.getPostDate(response.parse());
 		assertNotNull(postDate);
-		assertEquals("Wed Apr 09 00:00:00 HKT 2014", postDate.toString());
+		System.out.println(postDate);
+		assertEquals("Wed May 14 00:00:00 HKT 2014", postDate.toString());
 	}
 
 	@Test
@@ -230,12 +231,11 @@ public class TestGoHomeProeprtyFetcher {
 				+ property.getSell() + "\n");
 
 	}
-	
+
 	@Test
-	public void testFetchProperty(){
+	public void testFetchProperty() {
 		final String link = "http://property.gohome.com.hk/Mid-Levels-North-Point-Braemar-Hill/42-60-Tin-Hau-Temple-Road/ad-1173596/en/?source=7";
-		
+
 	}
 
-	
 }

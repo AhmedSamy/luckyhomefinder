@@ -89,22 +89,16 @@ public class propertyRepositoryTest {
 		properties
 				.add(new Property(
 						UUID.randomUUID(),
-						"206058",
+						"1209624",
 						"HomeLAND",
-						dateFormat.parse("2014.05.11 PM.00:00"),
+						dateFormat.parse("2014.05.12 PM.00:00"),
 						1235,
-						50000000l,
+						5001,
 						200,
 						PropertyType.APARTMENT,
 						true,
 						false,
-						"http://property.gohome.com.hk/Mongkok/Portland-Building-4875/ad-1206058/en/",
-						true, true));
-		properties
-				.add(new Property(UUID.randomUUID(), "117396", "SHATIN",
-						dateFormat.parse("1925.05.10 PM.12:33"), 1235,
-						50000000l, 200, PropertyType.APARTMENT, true, false,
-						"http://www.28hse.com/en/utf8/property117396.html",
+						"http://property.gohome.com.hk/Pokfulam/Greenery-Garden-1128/ad-1209624/en/",
 						true, true));
 		return properties;
 	}
