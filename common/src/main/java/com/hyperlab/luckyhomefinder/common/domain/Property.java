@@ -1,11 +1,11 @@
 package com.hyperlab.luckyhomefinder.common.domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-
 
 /**
  * Property holds all property information that will be used later to be
@@ -38,12 +38,14 @@ public final class Property {
 	/** Represent wither this property is advertised by an agency or not */
 	private boolean owner;
 	/** Contain the property link. */
-	@Indexed(unique=true)
+	@Indexed(unique = true)
 	private String link;
 	/** Boolean to indicate wither property for rent or not */
 	private boolean rentStatus;
 	/** Boolean to indicate wither property for sale or not */
 	private boolean saleStatus;
+	/** Holds images links to the property. */
+	private List<String> images;
 
 	/**
 	 * property empty constructor
@@ -265,7 +267,7 @@ public final class Property {
 	 * @param feets
 	 *            property size in feet
 	 */
-	public final void setFeets(final int feets) {
+	public void setFeets(final int feets) {
 		this.feets = feets;
 	}
 
@@ -324,6 +326,14 @@ public final class Property {
 
 	public final void setOwner(boolean owner) {
 		this.owner = owner;
+	}
+
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -60,7 +61,7 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 	 * Private constructor.
 	 * */
 	@SuppressWarnings("unused")
-	private H28sePropertyFetcher() {
+	public H28sePropertyFetcher() {
 	}
 
 	/**
@@ -150,6 +151,7 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 			setFeets(cleanedElements);
 			setPostDate(cleanedElements);
 			setDistrict(document);
+			property.setImages(getPropertyImages(document));
 		} catch (Throwable e) {
 			throw new PropertyFetcherException(e);
 		}
@@ -455,4 +457,19 @@ public class H28sePropertyFetcher extends Thread implements PropertyParser {
 		return cleanElements;
 	}
 
+	/**
+	 * Extracts property images from property page.
+	 * 
+	 * @param document
+	 *            property page document.
+	 * @return {@link List} of image links for the property.
+	 * */
+	protected final List<String> getPropertyImages(final Document document) {
+		List<String> links = new LinkedList<String>();
+		Elements imgElements = document.getElementsByClass("fancybox");
+		for (Element imgElem : imgElements) {
+			links.add(imgElem.absUrl("href"));
+		}
+		return links;
+	}
 }

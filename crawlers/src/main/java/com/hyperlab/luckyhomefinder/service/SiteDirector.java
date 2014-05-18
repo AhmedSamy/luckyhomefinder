@@ -65,10 +65,10 @@ public class SiteDirector {
 		this.website = pWebsite;
 	}
 
-//	@Override
-//	public void run() {
-//
-//	}
+	// @Override
+	// public void run() {
+	//
+	// }
 
 	/**
 	 * Starting point of {@link SiteDirector} work.
@@ -77,10 +77,10 @@ public class SiteDirector {
 	public final void execute() {
 		// Fetching property links for the targeted website.
 		try {
-	
+
 			Property lastAddedProperty = customRepository
 					.findLastProperty(website);
-			List<String> propertyLinks = linksFetcher	
+			List<String> propertyLinks = linksFetcher
 					.fetchLinks(lastAddedProperty);
 			if (propertyLinks != null && !propertyLinks.isEmpty()) {
 				manager.processLinks(propertyLinks);
